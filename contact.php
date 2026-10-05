@@ -4,8 +4,15 @@ declare(strict_types=1);
 function respond(int $status, string $title, string $message): never
 {
     http_response_code($status);
-    header('Content-Type: text/html; charset=UTF-8');
     header('Cache-Control: no-store');
+
+    if (str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json')) {
+        header('Content-Type: application/json; charset=UTF-8');
+        echo json_encode(['title' => $title, 'message' => $message], JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE);
+        exit;
+    }
+
+    header('Content-Type: text/html; charset=UTF-8');
 
     $safeTitle = htmlspecialchars($title, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     $safeMessage = htmlspecialchars($message, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');

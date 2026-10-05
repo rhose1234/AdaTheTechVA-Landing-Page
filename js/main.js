@@ -8,11 +8,62 @@ document.querySelector("#copyright-year").textContent = new Date().getFullYear()
 const contactForm = document.querySelector(".contact-form");
 if (contactForm) {
   const loadedAtField = contactForm.elements.namedItem("form_loaded_at");
-  loadedAtField.value = String(Math.floor(Date.now() / 1000));
-  contactForm.addEventListener("submit", () => {
-    const submitButton = contactForm.querySelector(".contact-submit");
+  const submitButton = contactForm.querySelector(".contact-submit");
+  const feedback = contactForm.querySelector(".contact-form-feedback");
+  let feedbackTimer;
+  const setLoadedAt = () => { loadedAtField.value = String(Math.floor(Date.now() / 1000)); };
+  setLoadedAt();
+  contactForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    clearTimeout(feedbackTimer);
+    feedback.hidden = true;
+    feedback.textContent = "";
+    const name = contactForm.elements.namedItem("name");
+    const email = contactForm.elements.namedItem("email");
+    const message = contactForm.elements.namedItem("message");
+    let error = "";
+    if (!name.value.trim()) error = "Please enter your name.";
+    else if (!email.value.trim()) error = "Please enter your email address.";
+    else if (!email.validity.valid) error = "Please enter a valid email address, such as name@example.com.";
+    else if (!message.value.trim()) error = "Please enter a message.";
+    if (error) {
+      feedback.textContent = error;
+      feedback.dataset.state = "error";
+      feedback.hidden = false;
+      (error.includes("email") ? email : error.includes("message") ? message : name).focus();
+      return;
+    }
+
     submitButton.disabled = true;
-    submitButton.textContent = "Sending…";
+    submitButton.textContent = "Sending...";
+    let response;
+    try {
+      response = await fetch(contactForm.action, {
+        method: "POST",
+        body: new FormData(contactForm),
+        headers: { Accept: "application/json" },
+      });
+      let result;
+      try {
+        result = await response.json();
+      } catch {
+        throw new Error(`The server returned an unexpected response (HTTP ${response.status}). This usually means PHP is not enabled for this site. Please email info@adathevahealthtech.com directly.`);
+      }
+      if (!response.ok) throw new Error(result.message || "Please check your details and try again.");
+      contactForm.reset();
+      feedback.textContent = result.message || "Your message has been sent. Thank you!";
+      feedback.dataset.state = "success";
+      feedback.hidden = false;
+      feedbackTimer = setTimeout(() => { feedback.hidden = true; feedback.textContent = ""; }, 3000);
+    } catch (requestError) {
+      feedback.textContent = requestError.message || "We could not reach the contact service. Please check your connection and try again.";
+      feedback.dataset.state = "error";
+      feedback.hidden = false;
+    } finally {
+      setLoadedAt();
+      submitButton.disabled = false;
+      submitButton.textContent = "Send Message";
+    }
   });
 }
 
@@ -51,7 +102,12 @@ cohortPills.forEach((pill) => {
   pill.addEventListener("click", () => {
     const wasExpanded = pill.getAttribute("aria-expanded") === "true";
 
-    cohortPills.forEach((item) => item.setAttribute("aria-expanded", "false"));
+    cohortPills.forEach((item) => {
+      item.setAttribute("aria-expanded", "false");
+      const itemDescription = document.getElementById(item.getAttribute("aria-controls").split(" ")[1]);
+      itemDescription.hidden = true;
+      itemDescription.textContent = "";
+    });
     cohortDescription.hidden = wasExpanded;
 
     if (wasExpanded) {
@@ -61,6 +117,9 @@ cohortPills.forEach((pill) => {
 
     pill.setAttribute("aria-expanded", "true");
     cohortDescription.textContent = pill.dataset.description;
+    const itemDescription = document.getElementById(pill.getAttribute("aria-controls").split(" ")[1]);
+    itemDescription.textContent = pill.dataset.description;
+    itemDescription.hidden = false;
   });
 });
 
