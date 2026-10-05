@@ -3,6 +3,19 @@ const navigation = document.querySelector("#primary-navigation");
 const openIcon = document.querySelector("#menu-open-icon");
 const closeIcon = document.querySelector("#menu-close-icon");
 
+document.querySelector("#copyright-year").textContent = new Date().getFullYear();
+
+const contactForm = document.querySelector(".contact-form");
+if (contactForm) {
+  const loadedAtField = contactForm.elements.namedItem("form_loaded_at");
+  loadedAtField.value = String(Math.floor(Date.now() / 1000));
+  contactForm.addEventListener("submit", () => {
+    const submitButton = contactForm.querySelector(".contact-submit");
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending…";
+  });
+}
+
 function setMenuOpen(isOpen) {
   navigation.classList.toggle("hidden", !isOpen);
   menuButton.setAttribute("aria-expanded", String(isOpen));
