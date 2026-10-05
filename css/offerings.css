@@ -765,6 +765,7 @@
 .site-footer-socials { display: flex; flex-wrap: wrap; gap: .6rem; }
 .site-footer-socials a { display: grid; width: 2.65rem; height: 2.65rem; place-items: center; border: 1px solid #c7ddda; border-radius: 50%; color: #064a5d; background: white; transition: color .2s ease, background-color .2s ease, border-color .2s ease, transform .2s ease; }
 .site-footer-socials a:hover { transform: translateY(-2px); border-color: #02b6ab; color: white; background: #078e87; }
+.site-footer-socials .site-footer-whatsapp:hover { color: white; background: #168b72; border-color: #168b72; }
 .site-footer-socials .hgi, .site-footer-academy-link .hgi { font-size: 1.2rem; line-height: 1; }
 .site-footer-column h2 { margin: .25rem 0 1rem; color: #064a5d; font-size: 1rem; font-weight: 850; }
 .site-footer-column ul { display: grid; gap: .7rem; margin: 0; padding: 0; list-style: none; }
