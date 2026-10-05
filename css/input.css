@@ -25,6 +25,11 @@
 @media (max-width: 480px) { .founder-photo-wrap { max-width: 340px; } }
 
 .hero-viewport { height: 100vh; height: 100svh; }
+@media (max-width: 640px) {
+  #home h1 { font-size: clamp(36px, 9vw, 44px); }
+  #home > img { opacity: .55; }
+  #home > [aria-hidden="true"] { background-image: linear-gradient(to bottom, rgb(6 74 93 / 100%), rgb(6 74 93 / 75%) 55%, rgb(6 74 93 / 20%)); }
+}
 
 @keyframes founder-photo-enter {
   from { opacity: 0; transform: translateY(22px) scale(.97); }
