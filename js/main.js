@@ -104,6 +104,7 @@ cohortPills.forEach((pill) => {
 
     cohortPills.forEach((item) => {
       item.setAttribute("aria-expanded", "false");
+      item.closest("li").classList.remove("is-expanded");
       const itemDescription = document.getElementById(item.getAttribute("aria-controls").split(" ")[1]);
       itemDescription.hidden = true;
       itemDescription.textContent = "";
@@ -116,6 +117,7 @@ cohortPills.forEach((pill) => {
     }
 
     pill.setAttribute("aria-expanded", "true");
+    pill.closest("li").classList.add("is-expanded");
     cohortDescription.textContent = pill.dataset.description;
     const itemDescription = document.getElementById(pill.getAttribute("aria-controls").split(" ")[1]);
     itemDescription.textContent = pill.dataset.description;

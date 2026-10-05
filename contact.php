@@ -5,6 +5,7 @@ function respond(int $status, string $title, string $message): never
 {
     http_response_code($status);
     header('Cache-Control: no-store');
+    header('X-Robots-Tag: noindex, nofollow');
 
     if (str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json')) {
         header('Content-Type: application/json; charset=UTF-8');
