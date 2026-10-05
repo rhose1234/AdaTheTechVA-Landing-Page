@@ -1010,10 +1010,10 @@
     font-size: clamp(36px, 9vw, 44px);
   }
   #home > img {
-    opacity: .55;
+    opacity: .65;
   }
   #home > [aria-hidden="true"] {
-    background-image: linear-gradient(to bottom, rgb(6 74 93 / 100%), rgb(6 74 93 / 75%) 55%, rgb(6 74 93 / 20%));
+    background-image: linear-gradient(to bottom, rgb(6 74 93 / 90%), rgb(6 74 93 / 65%) 55%, rgb(6 74 93 / 10%));
   }
 }
 @keyframes founder-photo-enter {

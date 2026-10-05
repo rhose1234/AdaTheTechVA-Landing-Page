@@ -45,6 +45,16 @@
   border-top-color: var(--teal);
   box-shadow: 0 1px 2px color-mix(in srgb, var(--brand-deep-teal) 6%, transparent), 0 18px 40px -14px color-mix(in srgb, var(--brand-deep-teal) 22%, transparent);
 }
+.offering-image {
+  display: block;
+  width: calc(100% + 3.5rem);
+  max-width: none;
+  height: 10.5rem;
+  margin: -2rem -1.75rem 1.4rem;
+  border-radius: .85rem .85rem 0 0;
+  object-fit: cover;
+  background: var(--mist);
+}
 
 /* The three programs aren't a sequence, so the stray "03" badge goes. */
 .offering-number { display: none; }
@@ -321,6 +331,10 @@
 @media (max-width: 480px) {
   .offering-card { padding: 1.5rem 1.25rem; }
   .offering-card.offering-card-featured { padding: 1.5rem 1.25rem; }
+  .offering-card .offering-image {
+    width: calc(100% + 2.5rem);
+    margin: -1.5rem -1.25rem 1.4rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
