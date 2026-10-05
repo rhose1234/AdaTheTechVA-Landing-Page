@@ -1,12 +1,12 @@
-import { animate } from "https://cdn.jsdelivr.net/npm/motion@13.4.6/mini/+esm";
-
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function animateIn(element, keyframes, options) {
-  animate(element, keyframes, options).then(() => {
+  const nativeOptions = { ...options, easing: options.ease === "easeOut" ? "ease-out" : options.easing };
+  delete nativeOptions.ease;
+  element.animate(keyframes, nativeOptions).finished.then(() => {
     element.style.removeProperty("opacity");
     element.style.removeProperty("transform");
-  });
+  }).catch(() => {});
 }
 
 if (!reduceMotion && "IntersectionObserver" in window) {
