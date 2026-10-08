@@ -347,7 +347,7 @@
   padding: clamp(4rem, 8vw, 7rem) 1.5rem;
   color: var(--ink, #064a5d);
   background-color: #f3faf9;
-  background-image: linear-gradient(90deg, rgb(243 250 249 / 91%), rgb(243 250 249 / 82%)), url("../images/hero.jpg");
+  background-image: linear-gradient(90deg, rgb(243 250 249 / 91%), rgb(243 250 249 / 82%)), url("https://res.cloudinary.com/dmakgfyld/image/upload/v1791229098/hero_rgvucp.jpg");
   background-position: center, center 38%;
   background-size: cover;
 }

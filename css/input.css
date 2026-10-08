@@ -41,3 +41,129 @@
   .founder-photo-wrap { animation: none; }
   .founder-photo { transition: none; }
 }
+
+/* Enroll Now Button Hover Effect */
+.enroll-btn {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .enroll-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    filter: brightness(1.1);
+  }
+}
+
+.enroll-btn:active {
+  transform: scale(1.02);
+}
+
+/* Founder WhatsApp Icon Styling */
+.founder-whatsapp {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: white;
+  font-size: 28px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.founder-whatsapp:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}
+
+.founder-whatsapp:active {
+  transform: scale(1.05);
+}
+
+@keyframes pulse-whatsapp {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4), 0 0 0 10px rgba(37, 211, 102, 0);
+  }
+}
+
+.founder-whatsapp {
+  animation: pulse-whatsapp 2s ease-in-out infinite;
+}
+
+/* Dancing pills animation - more noticeable */
+@keyframes float-dance {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  25% {
+    transform: translateY(-10px) scale(1.02);
+  }
+  50% {
+    transform: translateY(-5px) scale(0.98);
+  }
+  75% {
+    transform: translateY(-12px) scale(1.01);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(2, 182, 171, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(2, 182, 171, 0);
+  }
+}
+
+.cohort-pill {
+  animation: float-dance 2.5s ease-in-out infinite, pulse-glow 2s ease-in-out infinite;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Stagger the animation for each pill */
+.cohort-pill:nth-child(1) { animation-delay: 0s, 0s; }
+.cohort-pill:nth-child(2) { animation-delay: 0.15s, 0.3s; }
+.cohort-pill:nth-child(3) { animation-delay: 0.3s, 0.6s; }
+.cohort-pill:nth-child(4) { animation-delay: 0.45s, 0.9s; }
+.cohort-pill:nth-child(5) { animation-delay: 0.6s, 1.2s; }
+.cohort-pill:nth-child(6) { animation-delay: 0.75s, 1.5s; }
+.cohort-pill:nth-child(7) { animation-delay: 0.9s, 1.8s; }
+.cohort-pill:nth-child(8) { animation-delay: 1.05s, 2.1s; }
+.cohort-pill:nth-child(9) { animation-delay: 1.2s, 2.4s; }
+
+/* Enhanced hover state */
+.cohort-pill:hover {
+  animation-play-state: paused;
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(2, 182, 171, 0.3);
+}
+
+/* Add a subtle bounce when active/clicked */
+.cohort-pill:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cohort-pill {
+    animation: none;
+  }
+  .cohort-pill:hover {
+    transform: translateY(-3px);
+  }
+}

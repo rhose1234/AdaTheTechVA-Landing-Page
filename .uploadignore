@@ -1,0 +1,36 @@
+# DO NOT UPLOAD THESE TO CPANEL
+# Only upload the compiled/production files
+
+# Development dependencies
+node_modules/
+package.json
+package-lock.json
+
+# Source CSS (only upload the compiled styles.css)
+css/input.css
+
+# Git files (if any)
+.git/
+.gitignore
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# =======================================
+# ONLY UPLOAD THESE FILES TO CPANEL:
+# =======================================
+# ✅ index.html
+# ✅ css/styles.css (compiled)
+# ✅ css/offerings.css
+# ✅ images/ (folder with all images)
+# ✅ js/main.js
+# ✅ js/animations.js
+# ✅ contact.php (if exists)
